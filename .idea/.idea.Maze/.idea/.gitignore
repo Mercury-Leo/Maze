@@ -1,0 +1,13 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+/modules.xml
+/contentModel.xml
+/projectSettingsUpdater.xml
+/.idea.Maze.iml
+# Datasource local storage ignored files
+/../../../../../../../../../../:\Users\Mercury\Desktop\Work\Code\Maze\.idea\.idea.Maze\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
