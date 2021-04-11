@@ -1,19 +1,27 @@
-﻿using UnityEngine;
-using View.Input.Scripts;
-
-namespace Core.Player.Scripts
+﻿namespace Core.Player.Scripts
 {
+    using UnityEngine;
+    using View.Input.Scripts;
+    
+    /// <summary>
+    /// The PlayerController will be in charge of controlling the player.
+    /// Moving the player will come from the <see cref="PlayerMovement"/> Script.
+    /// Abilities functionality will be used from the <see cref="PlayerAbilities"/> Script. 
+    /// </summary>
     public class PlayerController : MonoBehaviour
     {
 
-        private View.Input.Scripts.Player _playerInput;
+        private Player _playerInput;
         private CharacterController _controller;
         private Vector3 _playerVelocity;
         private bool _groundedPlayer;
+        private Transform _cameraMain;
+        private Transform _childMesh;
 
-        [SerializeField]private float playerSpeed = 2.0f;
-        [SerializeField]private float jumpHeight = 1.0f;
-        [SerializeField]private float gravityValue = -9.81f;
+        [SerializeField]private float playerSpeed = Conventions.PLAYER_SPEED;
+        [SerializeField]private float jumpHeight = Conventions.JUMP_HEIGHT;
+        [SerializeField]private float gravityValue = Conventions.GRAVITY_VALUE;
+        [SerializeField]private float rotationSpeed = Conventions.CHILD_ROTATION_SPEED;
             
         private void Awake()
         {
@@ -33,7 +41,8 @@ namespace Core.Player.Scripts
 
         private void Start()
         {
-        
+            _cameraMain = Camera.main?.transform;
+            _childMesh = transform.GetChild(0).transform;
         }
 
         private void Update()
@@ -45,13 +54,16 @@ namespace Core.Player.Scripts
             }
 
             var movementInput = _playerInput.PlayerMain.Move.ReadValue<Vector2>();
-            var move = new Vector3(movementInput.x, 0f, movementInput.y);
+            var move = (_cameraMain.forward * movementInput.y + _cameraMain.right * movementInput.x);
+            move.y = 0;
+            //var move = new Vector3(movementInput.x, 0f, movementInput.y);
             _controller.Move(move * (Time.deltaTime * playerSpeed));
 
+            /*
             if (move != Vector3.zero)
             {
                 gameObject.transform.forward = move;
-            }
+            }*/
 
             // Changes the height position of the player..
             if (_playerInput.PlayerMain.Jump.triggered && _groundedPlayer)
@@ -61,6 +73,13 @@ namespace Core.Player.Scripts
 
             _playerVelocity.y += gravityValue * Time.deltaTime;
             _controller.Move(_playerVelocity * Time.deltaTime);
+
+            if (movementInput != Vector2.zero)
+            {
+                var localEulerAngles = _childMesh.localEulerAngles;
+                var rotation = Quaternion.Euler(new Vector3(localEulerAngles.x, _cameraMain.localEulerAngles.y, localEulerAngles.z));
+                _childMesh.rotation = Quaternion.Lerp(_childMesh.rotation, rotation, Time.deltaTime * rotationSpeed);
+            }
         }
     }
 }

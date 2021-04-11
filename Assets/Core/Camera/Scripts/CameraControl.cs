@@ -1,16 +1,16 @@
-﻿using Cinemachine;
-using UnityEngine;
-using View.Input.Scripts;
-
-namespace Core.Camera.Scripts
+﻿namespace Core.Camera.Scripts
 {
+    using Cinemachine;
+    using UnityEngine;
+    using View.Input.Scripts;
+    
     [RequireComponent(typeof(CinemachineFreeLook))]
     public class CameraControl : MonoBehaviour
     {
         [SerializeField] private float lookSpeed = 1;
         
         private CinemachineFreeLook _cinemachine;
-        private View.Input.Scripts.Player _playerInput;
+        private Player _playerInput;
 
         private void Awake()
         {
@@ -31,7 +31,7 @@ namespace Core.Camera.Scripts
         void Update()
         { 
             var delta = _playerInput.PlayerMain.LookAround.ReadValue<Vector2>();
-            _cinemachine.m_XAxis.Value += delta.x * 200 + lookSpeed * Time.deltaTime;
+            _cinemachine.m_XAxis.Value += delta.x + lookSpeed * Time.deltaTime;
             _cinemachine.m_YAxis.Value += delta.y + lookSpeed * Time.deltaTime;
         }
     }
