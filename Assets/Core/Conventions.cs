@@ -3,6 +3,12 @@
 
     public static class Conventions
     {
+        #region HandlersNames
+        
+        public const string HEALTH_HANDLER = "HealthHandler";
+        
+        #endregion
+        
         #region ClassNames
 
         public const string INPUT_MANAGER = "InputManager";
@@ -20,7 +26,10 @@
 
         public const float PLAYER_SPEED = 2f;
         public const float JUMP_HEIGHT = 1f;
+        public const int PLAYER_MAX_HEALTH = 5;
 
         #endregion
+
+        
     }
 
