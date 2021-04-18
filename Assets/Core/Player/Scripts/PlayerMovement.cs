@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Assertions;
 using static UnityEngine.Camera;
 
 namespace Core.Player.Scripts
@@ -29,6 +30,7 @@ namespace Core.Player.Scripts
         
         private void Start()
         {
+            Assert.IsNotNull(main);
             _cameraMain = main?.transform;
         }
 

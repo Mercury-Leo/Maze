@@ -30,6 +30,14 @@
 
         #endregion
 
-        
+        #region SceneNames
+
+        public const string SCENE_MAZE = "MainMaze";
+        public const string SCENE_MUSIC = "Music";
+        public const string SCENE_START = "StartScreen";
+
+        #endregion
+
+
     }
 
