@@ -9,17 +9,18 @@ namespace Core.Player.Abilities.Scripts
         private readonly GameObject[] _teleportLocations;
 
         private int _currentLocation;
-        private int _previousLocation = 0;
+        private int _previousLocation;
 
         public Teleport(Transform teleportObject, GameObject[] teleportLocations)
         {
             _teleportObject = teleportObject;
             _teleportLocations = teleportLocations;
+            _previousLocation = 0;
         }
 
         public void TriggerAbility()
         {
-            throw new System.NotImplementedException();
+            TeleportHandler();
         }
 
         /// <summary>
