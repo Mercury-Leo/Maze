@@ -7,8 +7,48 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Wall1_lambert5SG
+    second: {fileID: 2100000, guid: 2b05c97c4546d454db26f9ffe1741d56, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall1_lambert6SG
+    second: {fileID: 2100000, guid: d234605104416c14fbdcea7059fe836b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: initialShadingGroup
+    second: {fileID: 2100000, guid: fa5d33778be9ba4408c9f6daccbebda9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: lambert2SG
-    second: {fileID: 2100000, guid: bbeda94476caf3e44936e309a1884c01, type: 2}
+    second: {fileID: 2100000, guid: 4100d9656381f0b4e93ba1b02cb4b87a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert3SG
+    second: {fileID: 2100000, guid: 4100d9656381f0b4e93ba1b02cb4b87a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert4SG
+    second: {fileID: 2100000, guid: c912a13b4b883a247b54183e1fccea80, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert5SG
+    second: {fileID: 2100000, guid: 4100d9656381f0b4e93ba1b02cb4b87a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert6SG
+    second: {fileID: 2100000, guid: d234605104416c14fbdcea7059fe836b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wall_1Mat
+    second: {fileID: 2100000, guid: 4100d9656381f0b4e93ba1b02cb4b87a, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

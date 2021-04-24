@@ -3,7 +3,12 @@ guid: 3e2c866374d371945a9e51aaccd442f2
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Spray1_ZBrushPolyMesh3DMat
+    second: {fileID: 2100000, guid: d650936ff781f52498829d8be74eeac3, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
