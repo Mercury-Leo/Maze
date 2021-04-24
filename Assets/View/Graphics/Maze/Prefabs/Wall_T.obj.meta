@@ -12,8 +12,28 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Wall_T_lambert4SG
+    second: {fileID: 2100000, guid: d234605104416c14fbdcea7059fe836b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall_T_lambert5SG
+    second: {fileID: 2100000, guid: 2b05c97c4546d454db26f9ffe1741d56, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: lambert2SG
     second: {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert4SG
+    second: {fileID: 2100000, guid: d234605104416c14fbdcea7059fe836b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert5SG
+    second: {fileID: 2100000, guid: 2b05c97c4546d454db26f9ffe1741d56, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
