@@ -34,7 +34,7 @@ namespace Core.Player.Scripts
             _cameraMain = main?.transform;
         }
 
-        public void MovementControl()
+        public void MovementControl(Vector2 movementInput)
         {
             _groundedPlayer = _controller.isGrounded;
             if (_groundedPlayer && _playerVelocity.y < 0)
@@ -42,9 +42,10 @@ namespace Core.Player.Scripts
                 _playerVelocity.y = 0f;
             }
 
-            var movementInput = _playerInput.PlayerMain.Move.ReadValue<Vector2>();
+            //var movementInput = _playerInput.PlayerMain.Move.ReadValue<Vector2>();
             var move = (_cameraMain.forward * movementInput.y + _cameraMain.right * movementInput.x);
             move.y = 0;
+
             //var move = new Vector3(movementInput.x, 0f, movementInput.y);
             _controller.Move(move * (Time.deltaTime * playerSpeed));
 
@@ -65,6 +66,7 @@ namespace Core.Player.Scripts
 
             if (movementInput != Vector2.zero)
             {
+                
                 var localEulerAngles = _childMesh.localEulerAngles;
                 var rotation = Quaternion.Euler(new Vector3(localEulerAngles.x, _cameraMain.localEulerAngles.y, localEulerAngles.z));
                 _childMesh.rotation = Quaternion.Lerp(_childMesh.rotation, rotation, Time.deltaTime * rotationSpeed);

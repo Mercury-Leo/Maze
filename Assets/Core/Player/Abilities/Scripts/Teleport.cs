@@ -1,5 +1,8 @@
-﻿using Core.Player.Abilities.Scripts.Interfaces;
+﻿using System;
+using System.Linq;
+using Core.Player.Abilities.Scripts.Interfaces;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Core.Player.Abilities.Scripts
 {
@@ -8,14 +11,19 @@ namespace Core.Player.Abilities.Scripts
         private readonly Transform _teleportObject;
         private readonly GameObject[] _teleportLocations;
 
-        private int _currentLocation;
-        private int _previousLocation;
+        private GameObject _currentLocation;
+        private GameObject _previousLocation;
 
+        /// <summary>
+        /// Gets a teleport object and a teleport locations and can teleport the object randomly to any of the locations.
+        /// </summary>
+        /// <param name="teleportObject"></param>
+        /// <param name="teleportLocations"></param>
         public Teleport(Transform teleportObject, GameObject[] teleportLocations)
         {
             _teleportObject = teleportObject;
             _teleportLocations = teleportLocations;
-            _previousLocation = 0;
+            _previousLocation = _teleportLocations[0];
         }
 
         public void TriggerAbility()
@@ -35,15 +43,16 @@ namespace Core.Player.Abilities.Scripts
 
         private void TeleportHandler()
         {
-            //For now basic if random picked same spot re roll
-            //TODO: Find a better method to prevent random being chosen.
-            _currentLocation = Random.Range(0, _teleportLocations.Length);
-            if(_currentLocation.Equals(_previousLocation))
-                _currentLocation = Random.Range(0, _teleportLocations.Length);
+            if (_teleportLocations.Length <= 1)
+                throw new Exception("Teleport locations length is under 1, cannot teleport player.");
             
-            TeleportToLocation(_teleportLocations[_currentLocation].transform);
-            _previousLocation = _currentLocation;
+            var teleportLocations = _teleportLocations.Where(t => t != _previousLocation).ToList();
+            _currentLocation = teleportLocations[Random.Range(0, teleportLocations.Count)];
 
+            TeleportToLocation(_currentLocation.transform);
+            _previousLocation = _teleportLocations.FirstOrDefault(t => t == _currentLocation);
+
+            StateController.PlayerState = StateController.PlayerStates.Idle;
         }
     }
 }

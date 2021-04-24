@@ -21,25 +21,15 @@ namespace Core.Player.Scripts
         private HealthControl _healthControl;
         private PlayerMovement _playerMovement;
         private Teleport _teleport;
+        private DrawGraffiti _graffiti;
 
         #endregion
        
         private Player _playerInput;
         private Transform _childMesh;
-        private PlayerStates _playerState = PlayerStates.Idle;
+        private Vector2 _playerMovementInput;
 
-        private enum PlayerStates
-        {
-            Teleporting, 
-            Walking, 
-            Idle, 
-            Jumping, 
-            Spraying, 
-            Winning,
-            Losing
-        }
-        
-            
+
         private void Awake()
         {
             _playerInput = new Player();
@@ -68,23 +58,33 @@ namespace Core.Player.Scripts
 
         private void Update()
         {
-            if(IsState(PlayerStates.Walking))
-                _playerMovement.MovementControl();
+            _playerMovementInput = _playerInput.PlayerMain.Move.ReadValue<Vector2>();
             
-            if(IsState(PlayerStates.Teleporting))
+            if (_playerMovementInput != Vector2.zero && StateController.IsState(StateController.PlayerStates.Idle))
+            {
+                StateController.PlayerState = StateController.PlayerStates.Walking;
+                _playerMovement.MovementControl(_playerMovementInput);
+            }
+            else
+            {
+                StateController.PlayerState = StateController.PlayerStates.Idle;
+            }
+
+            if (_playerInput.PlayerMain.Teleport.triggered)
+            {
+                StateController.PlayerState = StateController.PlayerStates.Teleporting;
                 _teleport.TriggerAbility();
+            }
+
+            if (_playerInput.PlayerMain.Spray.triggered)
+            {
+                StateController.PlayerState = StateController.PlayerStates.Spraying;
+                //.TriggerAbility();
+            }
+                
         }
 
-        /// <summary>
-        /// Checks if the player is state is as needed.
-        /// </summary>
-        /// <param name="currentState"></param>
-        /// <param name="isState"></param>
-        /// <returns></returns>
-        private bool IsState(PlayerStates isState)
-        {
-            return _playerState.Equals(isState);
-        }
+        
     }
 }
    

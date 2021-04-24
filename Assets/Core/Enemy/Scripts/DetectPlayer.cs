@@ -1,18 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class DetectPlayer : MonoBehaviour
+public class DetectPlayer
 {
-    // Start is called before the first frame update
-    void Start()
+    private readonly GameObject _detectableObject;
+    private readonly GameObject _searchingObject;
+    private const float SearchDistance = 50f;
+
+    public DetectPlayer(GameObject detectableObject, GameObject searchingObject)
     {
-        
+        _detectableObject = detectableObject;
+        _searchingObject = searchingObject;
     }
 
-    // Update is called once per frame
-    void Update()
+    public bool DetectedPlayer()
     {
-        
+        return Vector3.Distance(_detectableObject.transform.position, _searchingObject.transform.position) > SearchDistance;
     }
 }

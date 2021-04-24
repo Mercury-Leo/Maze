@@ -1,9 +1,12 @@
-﻿
-namespace Core.Maze.Traps.Scripts.Interfaces
+﻿namespace Core.Maze.Traps
 {
-    public interface ITrap 
+    public interface ITrap
     {
-    
+        float DealDamage();
+
+        void ChallengePassed();
+
+        void ChallengeFailed();
     }
 }
 

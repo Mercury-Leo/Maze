@@ -7,9 +7,9 @@ namespace Core.Music.Scripts
     /// MusicManager is a singleton that handles the background music.
     /// </summary>
     [RequireComponent(typeof(AudioSource))]
-    public class MusicManager : MonoBehaviour
+    public class MusicManager : Singleton<MusicManager>
     {
-        private static MusicManager _instance;
+        //private static MusicManager _instance;
 
         [SerializeField] private Sprite musicOnImage;
         [SerializeField] private Sprite musicOffImage;
@@ -21,16 +21,11 @@ namespace Core.Music.Scripts
 
         private void Awake()
         {
-            if (_instance != null & _instance != this)
-                Destroy(this.gameObject);
-            else
-            {
-                _instance = this;
-                DontDestroyOnLoad(this);
-                _audioSource = gameObject.GetComponent<AudioSource>();
-                _audioSource.clip = backgroundMusic;
-                _image = musicButton.GetComponent<Image>();
-            }
+            DontDestroyOnLoad(this);
+            _audioSource = gameObject.GetComponent<AudioSource>();
+            _audioSource.clip = backgroundMusic;
+            _image = musicButton.GetComponent<Image>();
+            
         }
 
         private void Start()

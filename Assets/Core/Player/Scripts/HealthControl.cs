@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Core.Player.Scripts
@@ -8,11 +9,11 @@ namespace Core.Player.Scripts
     
         private int _currentHealth;
     
-        [SerializeField] private Sprite _canFullHealth;
-        [SerializeField] private Sprite _canEmptyHealth;
+        [SerializeField] private Sprite canFullHealth;
+        [SerializeField] private Sprite canEmptyHealth;
 
-        [SerializeField] private GameObject _content;
-        [SerializeField] private GameObject _healthPrefab;
+        [SerializeField] private GameObject content;
+        [SerializeField] private GameObject healthPrefab;
         
 
         /// <summary>
@@ -36,7 +37,7 @@ namespace Core.Player.Scripts
             {
                 if (_currentHealth >= Conventions.PLAYER_MAX_HEALTH) return;
                 _currentHealth++;
-                _content.transform.GetChild(_currentHealth - 1).transform.GetComponent<Image>().sprite = _canFullHealth;
+                content.transform.GetChild(_currentHealth - 1).transform.GetComponent<Image>().sprite = canFullHealth;
             }
         }
 
@@ -51,7 +52,7 @@ namespace Core.Player.Scripts
             for (var i = 0; i < amount; i++)
             {
                 if (_currentHealth < 1) return;
-                _content.transform.GetChild(_currentHealth - 1).transform.GetComponent<Image>().sprite = _canEmptyHealth;
+                content.transform.GetChild(_currentHealth - 1).transform.GetComponent<Image>().sprite = canEmptyHealth;
                 _currentHealth--;
             }
         }
@@ -63,7 +64,7 @@ namespace Core.Player.Scripts
         {
             for (var i = 0; i < Conventions.PLAYER_MAX_HEALTH; i++)
             {
-                Instantiate(_healthPrefab, _content.transform, true);
+                Instantiate(healthPrefab, content.transform, true);
             }
         }
     }
