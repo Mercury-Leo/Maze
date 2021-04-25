@@ -7,8 +7,33 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Wall_E_Wall_E_Wall_E_Wall_E_lambert7SG
+    second: {fileID: 2100000, guid: d234605104416c14fbdcea7059fe836b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall_E_Wall_E_Wall_E_lambert7SG
+    second: {fileID: 2100000, guid: d234605104416c14fbdcea7059fe836b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall_E_Wall_E_lambert7SG
+    second: {fileID: 2100000, guid: d234605104416c14fbdcea7059fe836b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall_E_Wall_E_lambert8SG
+    second: {fileID: 2100000, guid: 2b05c97c4546d454db26f9ffe1741d56, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Wall_E_lambert7SG
     second: {fileID: 2100000, guid: d234605104416c14fbdcea7059fe836b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall_E_lambert8SG
+    second: {fileID: 2100000, guid: 2b05c97c4546d454db26f9ffe1741d56, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -29,6 +54,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: lambert7SG
     second: {fileID: 2100000, guid: d234605104416c14fbdcea7059fe836b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert8SG
+    second: {fileID: 2100000, guid: 2b05c97c4546d454db26f9ffe1741d56, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
