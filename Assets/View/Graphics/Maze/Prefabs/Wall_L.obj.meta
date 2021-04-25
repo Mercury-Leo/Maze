@@ -12,6 +12,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Wall_L_group1Mat
+    second: {fileID: 2100000, guid: 2b05c97c4546d454db26f9ffe1741d56, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: lambert2SG
     second: {fileID: 2100000, guid: 4628b85d5d05cb64d890d0ba341d6847, type: 2}
   - first:
@@ -24,6 +29,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: lambert5SG
     second: {fileID: 2100000, guid: 2b05c97c4546d454db26f9ffe1741d56, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: polySurface108Mat
+    second: {fileID: 2100000, guid: d9de240850ec5344e80667ae617d6f9b, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

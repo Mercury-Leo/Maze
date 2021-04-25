@@ -1,39 +1,9 @@
 fileFormatVersion: 2
-guid: ed50cc5dba135c449b7c69f5d1b987b5
+guid: 3061ae4f390bd8446abdc39fcfc915b6
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Wall_Cr2Mat
-    second: {fileID: 2100000, guid: 4100d9656381f0b4e93ba1b02cb4b87a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Wall_Cr_lambert4SG
-    second: {fileID: 2100000, guid: d234605104416c14fbdcea7059fe836b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Wall_Cr_lambert5SG
-    second: {fileID: 2100000, guid: 2b05c97c4546d454db26f9ffe1741d56, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: lambert2SG
-    second: {fileID: 2100000, guid: d85c9a408d1375342805c52828b8fbda, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: lambert4SG
-    second: {fileID: 2100000, guid: d234605104416c14fbdcea7059fe836b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: lambert5SG
-    second: {fileID: 2100000, guid: 2b05c97c4546d454db26f9ffe1741d56, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 1
     materialName: 0

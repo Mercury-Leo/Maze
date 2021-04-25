@@ -24,6 +24,16 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: lambert6SG
     second: {fileID: 2100000, guid: d234605104416c14fbdcea7059fe836b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: polySurface76_polySurface75Mat
+    second: {fileID: 2100000, guid: 2b05c97c4546d454db26f9ffe1741d56, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: polySurface80Mat
+    second: {fileID: 2100000, guid: d9de240850ec5344e80667ae617d6f9b, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
