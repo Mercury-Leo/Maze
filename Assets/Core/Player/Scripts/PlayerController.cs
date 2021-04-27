@@ -14,6 +14,8 @@ namespace Core.Player.Scripts
     {
         [Tooltip("Add here the empty Game objects that represent points into which to teleport to, make sure first one is player location.")]
         [SerializeField] private GameObject[] teleportArray;
+
+        [SerializeField] private Animator playerAnimator;
         
         #region Scripts
 
@@ -22,6 +24,7 @@ namespace Core.Player.Scripts
         private PlayerMovement _playerMovement;
         private Teleport _teleport;
         private DrawGraffiti _graffiti;
+        private AnimationController _playerAnimations;
 
         #endregion
        
@@ -33,10 +36,12 @@ namespace Core.Player.Scripts
         private void Awake()
         {
             _playerInput = new Player();
+            _teleport = new Teleport(transform, teleportArray);
+            _playerAnimations = new AnimationController(playerAnimator);
             _controller = GetComponent<CharacterController>();
             _playerMovement = GetComponent<PlayerMovement>();
             _healthControl = GameObject.Find(Conventions.HEALTH_HANDLER).GetComponent<HealthControl>();
-            _teleport = new Teleport(transform, teleportArray);
+            
         }
         
         private void OnEnable()
@@ -64,6 +69,7 @@ namespace Core.Player.Scripts
             {
                 StateController.PlayerState = StateController.PlayerStates.Walking;
                 _playerMovement.MovementControl(_playerMovementInput);
+                _playerAnimations.ChangeAnimationState(_playerMovementInput);
             }
             else
             {
@@ -87,5 +93,3 @@ namespace Core.Player.Scripts
         
     }
 }
-   
-

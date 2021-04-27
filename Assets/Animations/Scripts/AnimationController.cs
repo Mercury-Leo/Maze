@@ -1,18 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class AnimationController : MonoBehaviour
+public class AnimationController
 {
-    // Start is called before the first frame update
-    void Start()
+    private Animator _playerAnimation;
+
+    public AnimationController(Animator animator)
     {
-        
+        _playerAnimation = animator;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ChangeAnimationState(Vector2 motion)
     {
-        
+        _playerAnimation.SetFloat("x", motion.x);
+        _playerAnimation.SetFloat("y", motion.y);
     }
 }
