@@ -1,4 +1,5 @@
-﻿using Core.Player.Abilities.Scripts;
+﻿using System;
+using Core.Player.Abilities.Scripts;
 using UnityEngine;
 namespace Core.Player.Scripts
 {
@@ -16,6 +17,8 @@ namespace Core.Player.Scripts
         [SerializeField] private GameObject[] teleportArray;
 
         [SerializeField] private Animator playerAnimator;
+
+        [SerializeField] private GameObject winner;
         
         #region Scripts
 
@@ -90,6 +93,13 @@ namespace Core.Player.Scripts
                 
         }
 
-        
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Spray"))
+            {
+                winner.SetActive(true);
+                StateController.PlayerState = StateController.PlayerStates.Winning;
+            }
+        }
     }
 }
