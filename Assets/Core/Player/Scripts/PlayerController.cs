@@ -1,6 +1,8 @@
 ﻿using System;
 using Core.Player.Abilities.Scripts;
 using UnityEngine;
+using UnityEngine.Events;
+
 namespace Core.Player.Scripts
 {
     
@@ -19,6 +21,8 @@ namespace Core.Player.Scripts
         [SerializeField] private Animator playerAnimator;
 
         [SerializeField] private GameObject winner;
+        
+        [SerializeField] private GameObject taggable; //load from resource?
         
         #region Scripts
 
@@ -43,6 +47,7 @@ namespace Core.Player.Scripts
             _playerAnimations = new AnimationController(playerAnimator);
             _controller = GetComponent<CharacterController>();
             _playerMovement = GetComponent<PlayerMovement>();
+            _graffiti = new DrawGraffiti(transform, taggable, CreateGraffitiEvent);
             _healthControl = GameObject.Find(Conventions.HEALTH_HANDLER).GetComponent<HealthControl>();
             
         }
@@ -50,6 +55,16 @@ namespace Core.Player.Scripts
         private void OnEnable()
         {
             _playerInput.Enable();
+        }
+
+        /// <summary>
+        /// Called when graffiti event is invoked.
+        /// </summary>
+        /// <param name="graffitiLocation"></param>
+        /// <param name="graffitiRotation"></param>
+        private void CreateGraffitiEvent(Vector3 graffitiLocation, Quaternion graffitiRotation)
+        {
+            //Instantiate(taggable, graffitiLocation, graffitiRotation);
         }
 
         private void OnDisable()
@@ -88,7 +103,7 @@ namespace Core.Player.Scripts
             if (_playerInput.PlayerMain.Spray.triggered)
             {
                 StateController.PlayerState = StateController.PlayerStates.Spraying;
-                //.TriggerAbility();
+                _graffiti.TriggerAbility();
             }
                 
         }
