@@ -428,12 +428,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &84593546 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3315609795694893809, guid: 67c1bf0f35f481e4f912afad873cfe79,
-    type: 3}
-  m_PrefabInstance: {fileID: 1132709112}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &175344786
 GameObject:
   m_ObjectHideFlags: 0
@@ -1407,7 +1401,8 @@ MonoBehaviour:
   - {fileID: 2138619175}
   playerAnimator: {fileID: 1106221263}
   winner: {fileID: 1313993917}
-  taggable: {fileID: 84593546}
+  taggable: {fileID: 6879211721543983126, guid: 714924780eb1bee4297ca8c115316584,
+    type: 3}
 --- !u!143 &777961901
 CharacterController:
   m_ObjectHideFlags: 0

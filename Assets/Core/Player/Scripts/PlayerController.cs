@@ -1,7 +1,5 @@
-﻿using System;
-using Core.Player.Abilities.Scripts;
+﻿using Core.Player.Abilities.Scripts;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Core.Player.Scripts
 {
@@ -49,7 +47,6 @@ namespace Core.Player.Scripts
             _playerMovement = GetComponent<PlayerMovement>();
             _graffiti = new DrawGraffiti(transform, taggable, CreateGraffitiEvent);
             _healthControl = GameObject.Find(Conventions.HEALTH_HANDLER).GetComponent<HealthControl>();
-            
         }
         
         private void OnEnable()
@@ -64,7 +61,13 @@ namespace Core.Player.Scripts
         /// <param name="graffitiRotation"></param>
         private void CreateGraffitiEvent(Vector3 graffitiLocation, Quaternion graffitiRotation)
         {
-            //Instantiate(taggable, graffitiLocation, graffitiRotation);
+            if (_healthControl.CurrentHealth > 0)
+            {
+                graffitiRotation.x = 0;
+                Instantiate(taggable, graffitiLocation, graffitiRotation);
+                _healthControl.RemoveHealth(1);
+            }
+                
         }
 
         private void OnDisable()

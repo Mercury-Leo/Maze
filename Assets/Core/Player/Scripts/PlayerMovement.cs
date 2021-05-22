@@ -66,7 +66,6 @@ namespace Core.Player.Scripts
 
             if (movementInput != Vector2.zero)
             {
-                
                 var localEulerAngles = _childMesh.localEulerAngles;
                 var rotation = Quaternion.Euler(new Vector3(localEulerAngles.x, _cameraMain.localEulerAngles.y, localEulerAngles.z));
                 _childMesh.rotation = Quaternion.Lerp(_childMesh.rotation, rotation, Time.deltaTime * rotationSpeed);

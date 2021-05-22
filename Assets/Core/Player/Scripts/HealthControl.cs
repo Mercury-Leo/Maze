@@ -8,7 +8,12 @@ namespace Core.Player.Scripts
     {
     
         private int _currentHealth;
-    
+
+        public int CurrentHealth
+        {
+            get => _currentHealth;
+        }
+
         [SerializeField] private Sprite canFullHealth;
         [SerializeField] private Sprite canEmptyHealth;
 
