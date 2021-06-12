@@ -14,13 +14,13 @@ namespace Core.Player.Scripts
     public class PlayerController : MonoBehaviour
     {
         [Tooltip("Add here the empty Game objects that represent points into which to teleport to, make sure first one is player location.")]
-        [SerializeField] private GameObject[] teleportArray;
-
-        [SerializeField] private Animator playerAnimator;
+        [SerializeField] private GameObject teleportArray;
 
         [SerializeField] private GameObject winner;
         
         [SerializeField] private GameObject taggable; //load from resource?
+
+        [SerializeField] private Transform playerTransform;
         
         #region Scripts
 
@@ -42,10 +42,10 @@ namespace Core.Player.Scripts
         {
             _playerInput = new Player();
             _teleport = new Teleport(transform, teleportArray);
-            _playerAnimations = new AnimationController(playerAnimator);
+            _playerAnimations = new AnimationController(playerTransform.GetComponent<Animator>());
             _controller = GetComponent<CharacterController>();
             _playerMovement = GetComponent<PlayerMovement>();
-            _graffiti = new DrawGraffiti(transform, taggable, CreateGraffitiEvent);
+            _graffiti = new DrawGraffiti(playerTransform, taggable, CreateGraffitiEvent);
             _healthControl = GameObject.Find(Conventions.HEALTH_HANDLER).GetComponent<HealthControl>();
         }
         
@@ -61,13 +61,15 @@ namespace Core.Player.Scripts
         /// <param name="graffitiRotation"></param>
         private void CreateGraffitiEvent(Vector3 graffitiLocation, Quaternion graffitiRotation)
         {
-            if (_healthControl.CurrentHealth > 0)
-            {
-                graffitiRotation.x = 0;
-                Instantiate(taggable, graffitiLocation, graffitiRotation);
-                _healthControl.RemoveHealth(1);
-            }
-                
+            if (_healthControl.CurrentHealth <= 0) return;
+            graffitiRotation.x = 0;
+            Debug.Log(graffitiRotation.eulerAngles);
+            var obj = Instantiate(taggable, graffitiLocation, graffitiRotation);
+            var test = graffitiRotation;
+            test.y = playerTransform.rotation.y;
+            obj.transform.rotation = test;
+            _healthControl.RemoveSpray();
+
         }
 
         private void OnDisable()
@@ -79,7 +81,7 @@ namespace Core.Player.Scripts
         {
             _childMesh = transform.GetChild(0).transform;
             _playerMovement.InitMovement(_controller, _playerInput, _childMesh);
-            _healthControl.InitHealth();
+            _healthControl.InitializeSpray();
         }
 
         private void Update()

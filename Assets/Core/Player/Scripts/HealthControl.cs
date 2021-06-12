@@ -6,66 +6,59 @@ namespace Core.Player.Scripts
 {
     public class HealthControl : MonoBehaviour
     {
-    
-        private int _currentHealth;
-
-        public int CurrentHealth
-        {
-            get => _currentHealth;
-        }
-
         [SerializeField] private Sprite canFullHealth;
         [SerializeField] private Sprite canEmptyHealth;
 
         [SerializeField] private GameObject content;
         [SerializeField] private GameObject healthPrefab;
         
-
+        public int CurrentHealth { get; private set; }
+        
         /// <summary>
         /// Exposed init function for the PlayerController to call.
         /// </summary>
-        public void InitHealth()
+        public void InitializeSpray()
         {
-            InitHealthPrefabs();
-            _currentHealth = Conventions.PLAYER_MAX_HEALTH;
+            InitSprayPrefabs();
+            CurrentHealth = Conventions.PLAYER_MAX_HEALTH;
         }
 
         /// <summary>
-        /// Adds health to the player, depends on amount given.
+        /// Adds spray to the player, depends on amount given.
         /// </summary>
         /// <param name="amount"></param>
-        public void AddHealth(int amount)
+        public void AddSpray(int amount)
         {
-            if (_currentHealth >= Conventions.PLAYER_MAX_HEALTH) return;
+            if (CurrentHealth >= Conventions.PLAYER_MAX_HEALTH) return;
 
             for (var i = 0; i < amount; i++)
             {
-                if (_currentHealth >= Conventions.PLAYER_MAX_HEALTH) return;
-                _currentHealth++;
-                content.transform.GetChild(_currentHealth - 1).transform.GetComponent<Image>().sprite = canFullHealth;
+                if (CurrentHealth >= Conventions.PLAYER_MAX_HEALTH) return;
+                CurrentHealth++;
+                content.transform.GetChild(CurrentHealth - 1).transform.GetComponent<Image>().sprite = canFullHealth;
             }
         }
 
         /// <summary>
-        /// Removes health to the player, depends on amount given. 
+        /// Removes spray to the player, depends on amount given. 
         /// </summary>
         /// <param name="amount"></param>
-        public void RemoveHealth(int amount)
+        public void RemoveSpray(int amount = 1)
         {
-            if (_currentHealth <= 0) return;
+            if (CurrentHealth <= 0) return;
 
             for (var i = 0; i < amount; i++)
             {
-                if (_currentHealth < 1) return;
-                content.transform.GetChild(_currentHealth - 1).transform.GetComponent<Image>().sprite = canEmptyHealth;
-                _currentHealth--;
+                if (CurrentHealth < 1) return;
+                content.transform.GetChild(CurrentHealth - 1).transform.GetComponent<Image>().sprite = canEmptyHealth;
+                CurrentHealth--;
             }
         }
 
         /// <summary>
         /// Creates prefabs of the health icon by the number of <see cref="Conventions.PLAYER_MAX_HEALTH"/>
         /// </summary>
-        private void InitHealthPrefabs()
+        private void InitSprayPrefabs()
         {
             for (var i = 0; i < Conventions.PLAYER_MAX_HEALTH; i++)
             {
