@@ -62,14 +62,8 @@ namespace Core.Player.Scripts
         private void CreateGraffitiEvent(Vector3 graffitiLocation, Quaternion graffitiRotation)
         {
             if (_healthControl.CurrentHealth <= 0) return;
-            graffitiRotation.x = 0;
-            Debug.Log(graffitiRotation.eulerAngles);
-            var obj = Instantiate(taggable, graffitiLocation, graffitiRotation);
-            var test = graffitiRotation;
-            test.y = playerTransform.rotation.y;
-            obj.transform.rotation = test;
+            Instantiate(taggable, graffitiLocation, graffitiRotation);
             _healthControl.RemoveSpray();
-
         }
 
         private void OnDisable()
@@ -120,6 +114,13 @@ namespace Core.Player.Scripts
                 winner.SetActive(true);
                 StateController.PlayerState = StateController.PlayerStates.Winning;
             }
+
+            if (other.CompareTag("SprayPowerUp"))
+            {
+                if(_healthControl.AddSpray())
+                    Destroy(other.gameObject);
+            }
+            
         }
     }
 }

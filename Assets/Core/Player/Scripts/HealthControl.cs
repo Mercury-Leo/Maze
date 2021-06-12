@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
@@ -27,16 +28,18 @@ namespace Core.Player.Scripts
         /// Adds spray to the player, depends on amount given.
         /// </summary>
         /// <param name="amount"></param>
-        public void AddSpray(int amount)
+        public bool AddSpray(int amount = 1)
         {
-            if (CurrentHealth >= Conventions.PLAYER_MAX_HEALTH) return;
+            if (CurrentHealth >= Conventions.PLAYER_MAX_HEALTH) return false;
 
             for (var i = 0; i < amount; i++)
             {
-                if (CurrentHealth >= Conventions.PLAYER_MAX_HEALTH) return;
+                if (CurrentHealth >= Conventions.PLAYER_MAX_HEALTH) break;
                 CurrentHealth++;
                 content.transform.GetChild(CurrentHealth - 1).transform.GetComponent<Image>().sprite = canFullHealth;
             }
+
+            return true;
         }
 
         /// <summary>

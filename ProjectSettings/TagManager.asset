@@ -6,6 +6,7 @@ TagManager:
   tags:
   - MazeWall
   - Spray
+  - SprayPowerUp
   layers:
   - Default
   - TransparentFX
