@@ -29,7 +29,7 @@ namespace Core.Player.Abilities.Scripts
             var directionRay = _targetTransform.rotation * Vector3.forward;
             var ray = new Ray(_targetTransform.position, directionRay);
 
-            if (!Physics.Raycast(ray, out var hit, 3, mazeLayer)) return;
+            if (!Physics.Raycast(ray, out var hit, 7, mazeLayer)) return;
             var hitRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
             var hitPoint = hit.point + hit.normal * 0.1f;
             hitPoint.y += 1f;
